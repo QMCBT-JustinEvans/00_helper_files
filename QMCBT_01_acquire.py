@@ -65,10 +65,20 @@ warnings.filterwarnings("ignore")
 # ------------ #
 # JUPYTER ONLY #
 # ------------ #
-
-#Disable autosave
+"""
+# Disable autosave
 %autosave 0
 
+# Increases Display Resolution for Graphs 
+%matplotlib inline 
+%config InlineBackend.figure_format = 'retina'
+
+# Left Align Tables in Jupyter Notebook
+from IPython.core.display import HTML
+table_css = 'table {align:left;display:block}'
+HTML('{}'.format(table_css))
+
+"""
 
 # ------------- #
 # Local Imports #
@@ -76,11 +86,21 @@ warnings.filterwarnings("ignore")
 
 # env containing sensitive access credentials
 from env import user, password, host
+
+# importing sys
+import sys
+ 
+# adding 00_helper_files to the system path
+sys.path.insert(0, '/Users/qmcbt/codeup-data-science/00_helper_files')
+
+# Import Helper Files
 import QMCBT_00_quicktips as qt
 import QMCBT_01_acquire as acq
 import QMCBT_02_prepare as prep
+import QMCBT_03_explore as exp
+import QMCBT_04_visualize as viz
+import QMCBT_05_model as mod
 import QMCBT_wrangle as w
-import QMCBT_display_project as show
 
 
 ######################################################
