@@ -7,27 +7,23 @@ def TOC():
     Prints a Table of Contents for quick reference of what functions are available for use.
     """    
     
-    print('imports() - Display list of various imports for ease of copy paste selection')
-    print('')
-    print('JUPYTER MARK UP')
-    print('* cell_color')
-    print('')
-    print('CHEAT SHEETS (cs_)')
-    print('* cs_confusion_matrix')
-    print('* cs_hypothesis')
-    print('* cs_train_val_test')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-
+    print("IMPORTS")
+    print("* imports() - Prints a list of standard import functions that can be quickly copy pasted for use.")
+    print()
+    print("TIPS & TRICKS")
+    print("* explore_tips() - Displays useful code tips for exploration.")
+    print()
+    print("JUPYTER MARK UP")
+    print("* cell_color() - Prints a short list of Jupyter Workbook markup code to change cell colors.")
+    print("* display_pic(url, width, height) - Display a picture from a stored location")
+    print()
+    print("CHEAT SHEETS (cs_)")
+    print("* cs_confusion_matrix() - Displays Cheat Sheet to help understand and read a confusion matrix.")
+    print("* cs_hypothesis() - Displays Cheat Sheet to help create and test Hypothesis.")
+    print("* cs_train_val_test - Display Cheat Sheet that shows graphic for train/test/split and Xy_split with steps to be performed for modeling.")
+    print()
+    print("")
+    
 
     
 #########################################################
@@ -175,7 +171,7 @@ def explore_tips():
 
 def cell_color():
     """
-    Prints a short list of Jupyter Workbook markup code tips and tricks.
+    Prints a short list of Jupyter Workbook markup code to change cell colors.
     """
     print("""
     
@@ -221,7 +217,10 @@ def display_pic(url, width=920, height=474):
 # ---------------------------- #
 
 def cs_confusion_matrix():
-
+    """
+    Displays a graphic with definitions to help with understanding and reading the confusion matrix.
+    """
+    
     print("""
     
     POSITIVE (+) = insert Positive statement here  
@@ -285,34 +284,37 @@ def cs_confusion_matrix():
 # ---------------------- #
 
 def cs_hypothesis():
-
+    """
+    Displays Cheat Sheet to help create and test Hypothesis.
+    """
+        
     print("""
     
     **Set Hypothesis**  
 
     * One Tail (```<= | >```) or Two Tails (```== | !=```)?
-        * two_tail (gender, been_manager)  
+        * two_tail (feature_1, feature_2)  
 
 
     * One Sample or Two Samples?    
-        * two_sample (gender, been_manager)  
+        * two_sample (feature_1, feature_2)  
 
 
     * Continuous or Discreat?  
-        * Discreat (gender) vs Discreat (been_manager) = **$Chi^2$**
+        * Discreat (feature_1) vs Discreat (feature_2) = **$Chi^2$**
             * T-Test = ```Discreat``` vs ```Continuous```  
             * Pearson’s = ```Continuous``` vs ```Continuous``` (linear)  
             * $Chi^2$ = ```Discreat``` vs ```Discreat```  
 
 
     * $𝐻_0$: The opposite of what I am trying to prove  
-        * $H_{0}$: The employee gender **is NOT** ```dependent``` on whether the employee has been a manager  
-        * ```employees.gender ``` != ```employees.been_manager```  
+        * $H_{0}$: feature_1 **is NOT** ```dependent``` on feature_2  
+        * ```feature_1``` != ```feature_2```  
 
 
     * $𝐻_𝑎$: What am I trying to prove  
-        * $H_{a}$: The employee gender **is** ```dependent``` on whether the employee has been a manager  
-        * ```employees.gender ``` == ```employees.been_manager```
+        * $H_{a}$: feature_1 **is** ```dependent``` on feature_2  
+        * ```feature_1``` == ```feature_2```
         
     """)
 
@@ -321,6 +323,9 @@ def cs_hypothesis():
 # --------------------------------------- #
 
 def cs_train_val_test():
+    """
+    Display Cheat Sheet that shows graphic for train/test/split and Xy_split with steps to be performed for modeling.
+    """
 
     print("""
     _______________________________________________________________  
