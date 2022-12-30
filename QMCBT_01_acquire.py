@@ -27,80 +27,46 @@ import statsmodels.api as sm
 # holt's linear trend model. 
 from statsmodels.tsa.api import Holt
 
-
-
-
 # Plots, Graphs, & Visualization
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.ticker import StrMethodFormatter
 from matplotlib.dates import DateFormatter
 
-# plotting defaults
-plt.rc('figure', figsize=(13, 7))
-plt.style.use('seaborn-whitegrid')
-plt.rc('font', size=16)
-
-# --------- #
-# Data Sets #
-# --------- #
-
-from pydataset import data
-# Call from the vega_datasets library like so:
-    ## df = data.
-
-from vega_datasets import data
-# Call from the vega_datasets library like so:
-    ## df = data.sf_temps()
 
 
-# -------------- #
-# Action Imports #
-# -------------- #
+###########################################################
+#################### TABLE OF CONTENTS ####################
+###########################################################
 
-# Warnings 
-import warnings 
-warnings.filterwarnings("ignore")
-
-# ------------ #
-# JUPYTER ONLY #
-# ------------ #
-"""
-# Disable autosave
-%autosave 0
-
-# Increases Display Resolution for Graphs 
-%matplotlib inline 
-%config InlineBackend.figure_format = 'retina'
-
-# Left Align Tables in Jupyter Notebook
-from IPython.core.display import HTML
-table_css = 'table {align:left;display:block}'
-HTML('{}'.format(table_css))
-
-"""
-
-# ------------- #
-# Local Imports #
-# ------------- #
-
-# env containing sensitive access credentials
-from env import user, password, host
-
-# importing sys
-import sys
- 
-# adding 00_helper_files to the system path
-sys.path.insert(0, '/Users/qmcbt/codeup-data-science/00_helper_files')
-
-# Import Helper Files
-import QMCBT_00_quicktips as qt
-import QMCBT_01_acquire as acq
-import QMCBT_02_prepare as prep
-import QMCBT_03_explore as exp
-import QMCBT_04_visualize as viz
-import QMCBT_05_model as mod
-import QMCBT_wrangle as w
+def TOC():
+    """
+    Prints a Table of Contents for quick reference of what functions are available for use.
+    """    
+    
+    print("get_db_url(database) - Returns a formatted string using credentials stored in local env.py file that can be passed to a pd.read_sql() function.")
+    print()
+    print("SQL")
+    print("* new_titanic_df() - ")
+    print("* get_titanic_df() - ")
+    print("* new_iris_sql_df() - ")
+    print("* get_iris_sql_df() - ")
+    print("* new_telco_churn_df() - ")
+    print("* get_telco_churn_df() - ")
+    print("* get_store_data() - ")
+    print("* wrangle_store_data() - ")
+    print()
+    print("Seaborn")
+    print("* new_iris_sns_df() - ")
+    print("* get_iris_sns_df() - ")
+    print()
+    print("GitHub")
+    print("* get_opsd_data() - ")
+    print()
+    print("Seaborn")
+    print()
+    print("")
+    
 
 
 ######################################################
@@ -110,7 +76,7 @@ import QMCBT_wrangle as w
 def get_db_url(database):
     '''
     Description:
-    Returns a formatted string using credentials stored in local env.py file that can be passed to a pd.read_sql() function
+    Returns a formatted string using credentials stored in local env.py file that can be passed to a pd.read_sql() function.
     
     Required Imports:
     import pandas as pd
