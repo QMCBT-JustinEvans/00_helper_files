@@ -18,9 +18,9 @@ def TOC():
     print("* display_pic(url, width, height) - Display a picture from a stored location")
     print()
     print("CHEAT SHEETS (cs_)")
-    print("* cs_confusion_matrix() - Displays Cheat Sheet to help understand and read a confusion matrix.")
-    print("* cs_hypothesis() - Displays Cheat Sheet to help create and test Hypothesis.")
-    print("* cs_train_val_test - Display Cheat Sheet that shows graphic for train/test/split and Xy_split with steps to be performed for modeling.")
+    print("* cs_confusion_matrix() - Display Cheat Sheet to help understand and read a confusion matrix.")
+    print("* cs_hypothesis() - Display Cheat Sheet to help create and test Hypothesis.")
+    print("* cs_train_val_test() - Display Cheat Sheet to show graphic for train/val/test/split and Xy_split with steps to be performed for modeling.")
     print()
     print("")
     
