@@ -1,8 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
+#################################################
+#################### IMPORTS ####################
+#################################################
 
 import pandas as pd
 import numpy as np
@@ -11,9 +9,35 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 
-# In[2]:
 
+###########################################################
+#################### TABLE OF CONTENTS ####################
+###########################################################
 
+def TOC():
+    """
+    DESCRIPTION:
+    Prints a Table of Contents for quick reference of what functions are available for use.
+    ___________________________________
+    REQUIRED IMPORTS:
+    NONE
+    ___________________________________
+    ARGUMENTS:
+    NONE
+    """    
+    print("CLEAN DATA")
+    print("prep_iris_df(iris_df)")
+    print("prep_titanic_df(titanic_df)")
+    print("prep_telco_churn_df(telco_churn_df)")
+    print()
+    print("SPLIT DATA")
+    print("train_val_test_split(df, target)")
+
+    
+#################################################
+#################### PREPARE ####################
+#################################################
+    
 def prep_iris_df(iris_df):
     iris_df = iris_df.drop(columns='species_id')
     iris_df = iris_df.rename(columns={'species_name': 'species'})
@@ -21,20 +45,12 @@ def prep_iris_df(iris_df):
     iris_df = pd.concat([iris_df, dummy_iris_df], axis=1)
     return iris_df
 
-
-# In[ ]:
-
-
 def prep_titanic_df(titanic_df):
     titanic_df = titanic_df.drop(columns=['passenger_id', 'class', 'deck'])
     dummy_df = pd.get_dummies(data=titanic_df['sex'], drop_first=True)
     dummy_df2 = pd.get_dummies(data=titanic_df['embark_town'], drop_first=False)
     titanic_df = pd.concat([titanic_df, dummy_df, dummy_df2], axis=1)
     return titanic_df
-
-
-# In[ ]:
-
 
 def prep_telco_churn_df(telco_churn_df):
     telco_churn_df = telco_churn_df.drop(columns=['payment_type_id', 'contract_type_id', 
@@ -71,10 +87,6 @@ def prep_telco_churn_df(telco_churn_df):
     
     return telco_churn_df.T
 
-
-# In[4]:
-
-
 def train_val_test_split(df, target):
     train, test = train_test_split(df, test_size=.2, random_state=1992, stratify = df[target])
     train, validate = train_test_split(train, test_size=.25, random_state=1992, stratify = train[target])
@@ -93,10 +105,3 @@ def train_val_test_split(df, target):
     print('* 5. val_predictions = tree_1.predict(x_val)')
     print('* 6. pd.crosstab(y_val, val_predictions)')
     return train, validate, test
-
-
-# In[ ]:
-
-
-
-
