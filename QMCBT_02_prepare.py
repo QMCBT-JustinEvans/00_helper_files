@@ -29,6 +29,9 @@ def TOC():
     print("prep_iris_df(iris_df)")
     print("prep_titanic_df(titanic_df)")
     print("prep_telco_churn_df(telco_churn_df)")
+    print("prep_store_data(df, datetime_column)")
+    print("* dmy_conversion(df, datetime_column)")
+    print("* set_index(df, datetime_column)")
     print()
     print("SPLIT DATA")
     print("train_val_test_split(df, target)")
@@ -37,7 +40,11 @@ def TOC():
 #################################################
 #################### PREPARE ####################
 #################################################
-    
+
+# ---------- #
+# CLEAN DATA #
+# ---------- #
+
 def prep_iris_df(iris_df):
     iris_df = iris_df.drop(columns='species_id')
     iris_df = iris_df.rename(columns={'species_name': 'species'})
@@ -86,6 +93,65 @@ def prep_telco_churn_df(telco_churn_df):
     telco_churn_df = telco_churn_df.drop(columns = drop_cols)
     
     return telco_churn_df.T
+
+def dmy_conversion(df, datetime_column):
+    """
+    DESCRIPTION:
+    This function ensures the datetime_column given as an argument is converted to dtype of datetime64.
+    Then adds Day, Month, and Year columns and sets the index to the datetime_column
+    ___________________________________
+    IMPORTS REQUIRED:
+    import pandas as pd
+    from datetime import timedelta, datetime
+    ___________________________________
+    ARGUMENTS:
+                 df = DataFrame
+    datetime_column = The 'column_name' of the column being used to store Date and Time data as datetime data type.
+    """
+    
+    # Ensure datetime_column is dtype datetime64
+    df[datetime_column] = pd.to_datetime(df[datetime_column])
+    
+    # Convert datetime_column column to Day, Month, Year
+    df['day'] = df[datetime_column].dt.day
+    df['day_of_week'] = df[datetime_column].dt.day_name()
+    df['weekday_number'] = df[datetime_column].dt.day_of_week+1
+    df['year'] = df[datetime_column].dt.year
+    df['month'] = df[datetime_column].dt.month_name()
+    df['month_number'] = df[datetime_column].dt.month
+    #df['hour'] = df[datetime_column].dt.hour
+    #df['minute'] = df[datetime_column].dt.minute
+    #df['second'] = df[datetime_column].dt.second
+
+    # Set index
+    df = set_index(df, datetime_column)
+
+    # FUTURE FUNCTIONALITY
+    # Use IF statements and D,M,Y,H,Min,Sec arguments to determin layers of conversion
+    
+    return df
+
+def prep_store_data(df, datetime_column):
+    """
+    Combine functions needed to prepare store data for use. 
+    """
+    
+    # Convert sale_date column to datetime format; Add Day, Month, Year columns; set Index to sale_date 
+    dmy_conversion(df, datetime_column)
+    
+    # Create Sales Total column from Item Price multiplied by Sales Amount
+    df['sales_total'] = df.sale_amount * df.item_price
+    
+    return df
+
+def set_index(df, datetime_column):
+    df = df.set_index(datetime_column).sort_index()
+    
+    return df
+
+# ---------- #
+# SPLIT DATA #
+# ---------- #
 
 def train_val_test_split(df, target):
     train, test = train_test_split(df, test_size=.2, random_state=1992, stratify = df[target])
