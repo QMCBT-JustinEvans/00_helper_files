@@ -1,3 +1,19 @@
+    '''
+    DESCRIPTION:
+    This is the format I use for my DOC_STRING.
+    ___________________________________
+    REQUIRED IMPORTS:
+    from somewhere import something as smtng
+    ___________________________________
+    ARGUMENTS:
+        argument_1 =
+             arg_2 =
+    third_argument = 
+    
+    '''
+
+
+
 ###########################################################
 #################### TABLE OF CONTENTS ####################
 ###########################################################
