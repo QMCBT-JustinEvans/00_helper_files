@@ -44,9 +44,9 @@ def TOC():
     Prints a Table of Contents for quick reference of what functions are available for use.
     """    
     
-    print("get_db_url(database) - Returns a formatted string using credentials stored in local env.py file that can be passed to a pd.read_sql() function.")
+    print("get_db_url(database) - Returns a formatted string using credentials stored in local env.py file that can be passed to a pandas read_sql() function.")
     print()
-    print("SQL")
+    print("SQL - These datasets are pulled from the Codeup SQL database using the get_db_url function and a local env.py module")
     print("* new_titanic_df() - ")
     print("* get_titanic_df() - ")
     print("* new_iris_sql_df() - ")
@@ -56,17 +56,17 @@ def TOC():
     print("* get_store_data() - ")
     print("* wrangle_store_data() - ")
     print()
-    print("Seaborn")
+    print("Seaborn - These datasets are pulled from the seaborn library and require that it is imported as sns")
     print("* new_iris_sns_df() - ")
     print("* get_iris_sns_df() - ")
     print()
-    print("GitHub")
+    print("GitHub - These are datasets that can be found on Github and pulled using pandas read_csv function")
     print("* get_opsd_data() - ")
     print()
-    print("Seaborn")
+    print("Codeup - These are datasets available on one of the Codeup servers as a csv file.")
+    print("* get_SAAS() - Read in saas data from cache or Codeup server then write to cache")
     print()
     print("")
-    
 
 
 ######################################################
@@ -75,14 +75,15 @@ def TOC():
 
 def get_db_url(database):
     '''
-    Description:
-    Returns a formatted string using credentials stored in local env.py file that can be passed to a pd.read_sql() function.
-    
-    Required Imports:
+    DESCRIPTION:
+    Returns a formatted string using credentials stored in local env.py module that can be passed to a pandas read_sql function.
+    ___________________________________
+    REQUIRED IMPORTS:
     import pandas as pd
-    
-    Arguments:
-    database - 'this is the name of the database that you wish to retrieve'
+    from env import user, password, host
+    ___________________________________
+    ARGUMENTS:
+    database = 'this is the name of the database that you wish to retrieve'
     '''
 
     return f'mysql+pymysql://{user}:{password}@{host}/{database}'
@@ -93,7 +94,14 @@ def get_db_url(database):
 
 def new_titanic_df():
     '''
+    DESCRIPTION:
     This function reads the titanic data from the Codeup database into a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
    
     # Create SQL query.
@@ -106,8 +114,16 @@ def new_titanic_df():
 
 def get_titanic_df():
     '''
+    DESCRIPTION:
     This function reads in titanic data from Codeup database, writes data to
     a csv file if a local file does not exist, and returns a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import os
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
     
     if os.path.isfile('titanic_df.csv'):
@@ -131,7 +147,14 @@ def get_titanic_df():
 
 def new_iris_sql_df():
     '''
+    DESCRIPTION:
     This function reads the iris data from the Codeup database into a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
     
     # Create SQL query.
@@ -144,8 +167,16 @@ def new_iris_sql_df():
 
 def get_iris_sql_df():
     '''
+    DESCRIPTION:
     This function reads in iris data from Codeup database, writes data to
     a csv file if a local file does not exist, and returns a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import os
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
 
     if os.path.isfile('iris_sql_df.csv'):
@@ -169,7 +200,14 @@ def get_iris_sql_df():
 
 def new_iris_sns_df():
     '''
+    DESCRIPTION:
     This function reads the iris data from the seaborn database into a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import seaborn as sns
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
     
     # Read in DataFrame from pydata db.
@@ -179,8 +217,16 @@ def new_iris_sns_df():
 
 def get_iris_sns_df():
     '''
+    DESCRIPTION:
     This function reads in iris data from seaborn database, writes data to
     a csv file if a local file does not exist, and returns a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import os
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
   
     if os.path.isfile('iris_sns_df.csv'):
@@ -204,8 +250,16 @@ def get_iris_sns_df():
 
 def new_telco_churn_df():
     '''
+    DESCRIPTION:
     This function reads the telco_churn (NOT telco_normalized) data from the Codeup database into a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
+    
     # Create SQL query.
     sql_query = 'SELECT * FROM customers LEFT JOIN internet_service_types USING (internet_service_type_id) LEFT JOIN contract_types USING (contract_type_id) LEFT JOIN payment_types USING (payment_type_id);'
     
@@ -216,8 +270,16 @@ def new_telco_churn_df():
 
 def get_telco_churn_df():
     '''
+    DESCRIPTION:
     This function reads in telco_churn (NOT telco_normalized) data from Codeup database, writes data to
     a csv file if a local file does not exist, and returns a DataFrame.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import os
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
     if os.path.isfile('telco_churn_df.csv'):
         
@@ -238,10 +300,19 @@ def get_telco_churn_df():
 # STORE DATA (from SQL) #
 # --------------------- #
 
-def get_store_data():
+def new_store_data():
     '''
+    DESCRIPTION:
     Returns a dataframe of all store data in the tsa_item_demand database and saves a local copy as a csv file.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
+    
+    # Create query for read_sql function
     query = '''
     SELECT *
     FROM items
@@ -255,16 +326,26 @@ def get_store_data():
     
     return df
 
-def wrangle_store_data():
+def get_store_data():
     '''
-    Checks for a local cache of tsa_store_data.csv and if not present will run the get_store_data() function which acquires data from Codeup's mysql server
+    DESCRIPTION:
+    Checks for a local cache of tsa_store_data.csv and if not present,
+    will run the new_store_data() function which acquires data from Codeup's mysql server
+    ___________________________________
+    REQUIRED IMPORTS:
+    import os
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     '''
+    
     filename = 'tsa_store_data.csv'
     
     if os.path.isfile(filename):
         df = pd.read_csv(filename)
     else:
-        df = get_store_data()
+        df = new_store_data()
         
     return df
 
@@ -274,7 +355,15 @@ def wrangle_store_data():
 
 def get_opsd_data():
     """
+    DESCRIPTION:
     Read in OPS data from local cache if it exists, otherwise pull it from github source and cache it.
+    ___________________________________
+    REQUIRED IMPORTS:
+    import os
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     """
     
     if os.path.exists('opsd.csv'):
@@ -290,7 +379,15 @@ def get_opsd_data():
 
 def get_saas():
     """
+    DESCRIPTION:
     Read in saas data from cache or Codeup server then write to cache
+    ___________________________________
+    REQUIRED IMPORTS:
+    import os
+    import pandas as pd
+    ___________________________________
+    ARGUMENTS:
+    NONE
     """
     
     filename = 'saas.csv'
