@@ -1,4 +1,4 @@
-    '''
+"""
     DESCRIPTION:
     This is the format I use for my DOC_STRING.
     ___________________________________
@@ -9,8 +9,8 @@
         argument_1 =
              arg_2 =
     third_argument = 
-    
-    '''
+
+"""
 
 
 
