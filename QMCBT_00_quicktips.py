@@ -140,14 +140,15 @@ def imports():
     # Local Imports #
     # ------------- #
 
-    # env containing sensitive access credentials
-    from env import user, password, host
-
     # importing sys
     import sys
 
     # adding 00_helper_files to the system path
     sys.path.insert(0, '/Users/qmcbt/codeup-data-science/00_helper_files')
+
+    # env containing sensitive access credentials
+    import env
+    from env import user, password, host
 
     # Import Helper Modules
     import QMCBT_00_quicktips as qt
