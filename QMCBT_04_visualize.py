@@ -49,7 +49,8 @@ def tnt():
     NONE
     """    
     print("USEFUL VISUALIZATION WEBSITES")
-    print("* https://chart.guide/")
+    print("* https://chart.guide/ - Helps you chose and design charts and graphs based on type of data.")
+    print('* https://i.redd.it/dtnetzv9slu71.png - A collection of all of seaborn’s color palettes.')
     print()
     print("USEFUL VISUALIZATION CODE")
     print("* sns.pairplot(DF, hue='TARGET_COLUMN', corner=True)")
