@@ -149,6 +149,7 @@ def imports():
     # env containing sensitive access credentials
     import env
     from env import user, password, host
+    from env import get_db_url
 
     # Import Helper Modules
     import QMCBT_00_quicktips as qt
