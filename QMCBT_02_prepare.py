@@ -154,20 +154,18 @@ def set_index(df, datetime_column):
 # ---------- #
 
 def train_val_test_split(df, target):
-    train, test = train_test_split(df, test_size=.2, random_state=1992, stratify = df[target])
+    train, test = train_test_split(df, test_size=.15, random_state=1992, stratify = df[target])
     train, validate = train_test_split(train, test_size=.25, random_state=1992, stratify = train[target])
-    print('_______________________________________________________________')
+    print(' _____________________________________________________________ ')
     print('|                              DF                             |')
-    print('|-------------------|-------------------|---------------------|')
-    print('|       Train       |       Validate    |          Test       |')
-    print('|-------------------|-------------------|-----------|---------|')
-    print('| x_train | y_train |   x_val  |  y_val |   x_test  |  y_test |')
     print('|-------------------------------------------------------------|')
+    print('|       Train       |       Validate    |          Test       |')
+    print('|-------------------|-------------------|---------------------|')
+    print('| x_train | y_train |   x_val  |  y_val |   x_test  |  y_test |')
+    print(':_____________________________________________________________: ')
     print('')
-    print('* 1. tree_1 = DecisionTreeClassifier(max_depth = 5)')
-    print('* 2. tree_1.fit(x_train, y_train)')
-    print('* 3. predictions = tree_1.predict(x_train)')
-    print('* 4. pd.crosstab(y_train, predictions)')
-    print('* 5. val_predictions = tree_1.predict(x_val)')
-    print('* 6. pd.crosstab(y_val, val_predictions)')
+    print(f"   Train: {train.shape[0]} rows {round(train.shape[0]/df.shape[0],2)}%")
+    print(f"Validate: {validate.shape[0]} rows {round(validate.shape[0]/df.shape[0],2)}%")
+    print(f"    Test: {test.shape[0]} rows {round(test.shape[0]/df.shape[0],2)}%")
+
     return train, validate, test
