@@ -5,6 +5,12 @@
 import pandas as pd
 import numpy as np
 
+# Plots, Graphs, & Visualization
+import seaborn as sns
+import matplotlib.pyplot as plt
+from matplotlib.ticker import StrMethodFormatter
+from matplotlib.dates import DateFormatter
+
 # import splitting functions
 from sklearn.model_selection import train_test_split
 
@@ -154,6 +160,20 @@ def set_index(df, datetime_column):
 # ---------- #
 
 def train_val_test_split(df, target):
+    '''
+    #### Description:
+    This function splits your data into Train, Validate, and Test
+    given a DataFrame argument and a Target to stratify on.
+    #### Required Imports:
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    from sklearn.model_selection import train_test_split
+    #### Parameters:
+    df = DataFrame
+    target = Feature column to stratify on
+    #### Returns:
+    train, validate, test
+    '''
     train, test = train_test_split(df, test_size=.15, random_state=1992, stratify = df[target])
     train, validate = train_test_split(train, test_size=.25, random_state=1992, stratify = train[target])
     print(' _____________________________________________________________ ')
@@ -164,8 +184,17 @@ def train_val_test_split(df, target):
     print('| x_train | y_train |   x_val  |  y_val |   x_test  |  y_test |')
     print(':_____________________________________________________________: ')
     print('')
+
     print(f"   Train: {train.shape[0]} rows {round(train.shape[0]/df.shape[0],2)}%")
     print(f"Validate: {validate.shape[0]} rows {round(validate.shape[0]/df.shape[0],2)}%")
     print(f"    Test: {test.shape[0]} rows {round(test.shape[0]/df.shape[0],2)}%")
 
-    return train, validate, test
+    plt.figure(figsize=(12, 4))
+    plt.title('Distribution of train, validate, and test')
+    plt.plot(train.index, train.Loan_Status, color='lightgreen')
+    plt.plot(validate.index, validate.Loan_Status, color='goldenrod')
+    plt.plot(test.index, test.Loan_Status, color='blue', alpha=.5)
+    plt.legend(['train', 'validate', 'test'], fontsize=15)
+    print(plt.show())
+    
+    return train, validate, test 
